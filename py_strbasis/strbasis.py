@@ -1,6 +1,6 @@
 
 s = ' '
-x_=257
+x_= 257 #10**8+7
 p=10**9+7
 h = []
 x = []
@@ -24,12 +24,12 @@ def strequal(h,x,l,a,b):
     result2 = (h[b+l]+h[a]*x[l])%p
     return (result1 == result2)   
 
-def strbasis(h,x,n):
-    i = 0
-    for i in range(1,n):
-        if strequal(h,x,n-i,0,i):
-            return i
-    return n
+#def strbasis(h,x,n):
+#    i = 0
+#    for i in range(1,n):
+#        if strequal(h,x,n-i,0,i):
+#            return i
+#    return n
         
 
 def main():
@@ -37,7 +37,15 @@ def main():
     s = ' ' + f.readline().strip()
     h, x, n = prepopulate(s) 
     f.close()  
-    answer = str(strbasis(h, x, n))
+    answer=''
+    #answer = str(strbasis(h, x, n))
+    
+    for i in range(1,n):
+        if strequal(h,x,n-i,0,i):
+            answer=str(i)
+            break
+    if answer=='':
+        answer=str(n)
     f=open("output.txt",'w+')
     f.write(answer)
     f.close()
